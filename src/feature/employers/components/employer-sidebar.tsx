@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import "urlpattern-polyfill"; // ⬅️ this defines globalThis.URLPattern
 
 const base = "/employer-dashboard";
 
