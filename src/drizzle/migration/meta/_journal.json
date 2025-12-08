@@ -15,6 +15,13 @@
       "when": 1760427292113,
       "tag": "0001_lumpy_black_tarantula",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1763026208045,
+      "tag": "0002_strong_sunfire",
+      "breakpoints": true
     }
   ]
 }

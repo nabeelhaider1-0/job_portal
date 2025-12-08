@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/config/db";
-import { users } from "@/drizzle/schema";
+import { applicants, employers, users } from "@/drizzle/schema";
 import argon2 from "argon2";
 import { eq, or } from "drizzle-orm";
 import {
@@ -10,7 +10,14 @@ import {
   RegisterUserData,
   registerUserSchema,
 } from "../auth.schema";
-import { createSessionAndSetCookies } from "./uses-cases/sessions";
+
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import crypto from "crypto";
+import {
+  createSessionAndSetCookies,
+  invalidateSession,
+} from "./uses-cases/sessions";
 
 // 👉 Server Actions in Next.js are special functions that run only on the server, not in the user’s browser.
 
@@ -48,16 +55,28 @@ export const registerUserAction = async (data: RegisterUserData) => {
 
     const hashPassword = await argon2.hash(password);
 
-    const [result] = await db
-      .insert(users)
-      .values({ name, userName, email, password: hashPassword, role });
-    await createSessionAndSetCookies(result.insertId);
+    await db.transaction(async (tx) => {
+      const [result] = await tx
+        .insert(users)
+        .values({ name, userName, email, password: hashPassword, role });
+
+      console.log(result);
+
+      if (role === "applicant") {
+        await tx.insert(applicants).values({ id: result.insertId });
+      } else {
+        await tx.insert(employers).values({ id: result.insertId });
+      }
+
+      await createSessionAndSetCookies(result.insertId, tx);
+    });
 
     return {
       status: "SUCCESS",
       message: "Registration Completed Successfully",
     };
   } catch (error) {
+    console.log(error);
     return {
       status: "ERROR",
       message: "Unknown Error Occurred! Please Try Again Later",
@@ -96,9 +115,30 @@ export const loginUserAction = async (data: LoginUserData) => {
       message: "Login Successful",
     };
   } catch (error) {
+    console.log(error);
+
     return {
       status: "ERROR",
       message: "Unknown Error Occurred! Please Try Again Later",
     };
   }
+};
+
+// logout user
+export const logoutUserAction = async () => {
+  const cookieStore = await cookies();
+  const session = cookieStore.get("session")?.value;
+
+  if (!session) return redirect("/login");
+  console.log(session);
+
+  const hashedToken = crypto
+    .createHash("sha-256")
+    .update(session)
+    .digest("hex");
+
+  await invalidateSession(hashedToken);
+  cookieStore.delete("session");
+
+  return redirect("/login");
 };

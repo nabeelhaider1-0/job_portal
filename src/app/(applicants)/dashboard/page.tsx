@@ -1,19 +1,21 @@
-import RegistrationForm from "@/feature/auth/components/register-form";
 import { getCurrentUser } from "@/feature/auth/server/auth.queries";
 import { redirect } from "next/navigation";
+import React from "react";
 
-const Registration = async () => {
+const ApplicantDashboard = async () => {
   const user = await getCurrentUser();
 
   if (user) {
     if (user.role === "applicant") return redirect("/dashboard");
     if (user.role === "employer") return redirect("/employer-dashboard");
+  } else {
+    return redirect("/login");
   }
   return (
-    <>
-      <RegistrationForm />
-    </>
+    <div>
+      <h1>Hello Applicant Dashboard</h1>
+    </div>
   );
 };
 
-export default Registration;
+export default ApplicantDashboard;
