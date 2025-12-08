@@ -9,10 +9,12 @@ import {
   Briefcase,
   Building2,
   Calendar,
+  FileText,
   Globe,
   Loader,
   MapPin,
 } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -20,7 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { updateEmployerProfileAction } from "@/features/server/employer.action";
 import { toast } from "sonner";
 import {
   EmployerProfileData,
@@ -29,56 +31,13 @@ import {
   teamSizes,
 } from "../employers.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { updateEmployerProfileAction } from "@/feature/server/employer-action";
 import Tiptap from "@/components/text-editor";
 
-// const organizationTypeOptions = [
-//   "development",
-//   "business",
-//   "design",
-//   "android dev",
-//   "cloud business",
-// ] as const;
-// type OrganizationType = (typeof organizationTypeOptions)[number];
-
-// const teamSizeOptions = ["1-5", "6-20", "21-50"] as const;
-// type TeamSize = (typeof teamSizeOptions)[number];
-
-// Without as const, TypeScript thinks options is just a generic list of strings (string[]). With as const, TypeScript treats it as a Read-Only Tuple. It knows exactly that:
-
-// Index 0 is "development"
-
-// Index 1 is "business"
-
-// Index 2 is "design"
-
-// Nothing else is allowed.
-
-// Imagine a Vending Machine (The Array).
-
-// typeof Machine: Describes the whole machine.
-
-// typeof Machine[0]: Describes only the chips in the first slot.
-
-// typeof Machine[number]: Describes anything that could possibly come out of that machine.
-
-// interface IFormInput {
-//   username: string;
-//   email: string;
-//   name: string;
-//   description: string;
-//   yearOfEstablishment: string;
-//   location: string;
-//   websiteUrl: string;
-//   organizationType: OrganizationType;
-//   teamSize: TeamSize;
-// }
-
-interface Props {
-  initialData?: Partial<EmployerProfileData>;
-}
-
-const EmployerSettingsForm = ({ initialData }: Props) => {
+const EmployerSettingsForm = ({
+  initialData,
+}: {
+  initialData?: Partial<EmployerProfileData>; // Key: Type
+}) => {
   const {
     register,
     handleSubmit,
@@ -91,8 +50,8 @@ const EmployerSettingsForm = ({ initialData }: Props) => {
       organizationType: initialData?.organizationType || undefined,
       teamSize: initialData?.teamSize || undefined,
       yearOfEstablishment: initialData?.yearOfEstablishment,
-      location: initialData?.location || "",
       websiteUrl: initialData?.websiteUrl || "",
+      location: initialData?.location || "",
     },
     resolver: zodResolver(employerProfileSchema),
   });
@@ -111,15 +70,6 @@ const EmployerSettingsForm = ({ initialData }: Props) => {
     <Card className="w-3/4 ">
       <CardContent>
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
-          {/* <div className="grid w-full max-w-sm items-center gap-3">
-            <Label htmlFor="username">username</Label>
-            <Input id="username" type="text" {...register("username")} />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-3">
-            <Label htmlFor="email">email</Label>
-            <Input id="email" type="text" {...register("email")} />
-          </div> */}
-          {/* Company Name */}
           <div className="space-y-2">
             <Label htmlFor="companyName">Company Name *</Label>
             <div className="relative">
@@ -136,6 +86,7 @@ const EmployerSettingsForm = ({ initialData }: Props) => {
               <p className="text-sm text-destructive">{errors.name.message}</p>
             )}
           </div>
+
           {/* Description */}
           {/* <div className="space-y-2">
             <Label htmlFor="description">Company Description *</Label>
@@ -154,6 +105,7 @@ const EmployerSettingsForm = ({ initialData }: Props) => {
               </p>
             )}
           </div> */}
+
           <div className="space-y-2">
             <Controller
               name="description"
@@ -172,6 +124,7 @@ const EmployerSettingsForm = ({ initialData }: Props) => {
               )}
             />
           </div>
+
           {/* When you run const { control } = useForm(), you create a specific instance of a form. The <Controller /> component is isolated; it doesn't know which form it belongs to. Passing control={control} connects this specific input to that specific useForm hook. */}
           {/* Organization Type and Team Size - Two columns */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -310,9 +263,10 @@ const EmployerSettingsForm = ({ initialData }: Props) => {
               {isSubmitting && <Loader className="w-4 h-4 animate-spin" />}
               {isSubmitting ? "Saving Changes..." : "Save Changes"}
             </Button>
+
             {!isDirty && (
               <p className="text-sm text-muted-foreground">
-                No Changes to save
+                No changes to save
               </p>
             )}
           </div>

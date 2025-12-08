@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { getCurrentUser } from "@/feature/auth/server/auth.queries";
+import { getCurrentUser } from "@/features/auth/server/auth.queries";
 import Image from "next/image";
 
 export default async function Home() {

@@ -1,5 +1,5 @@
-import RegistrationForm from "@/feature/auth/components/register-form";
-import { getCurrentUser } from "@/feature/auth/server/auth.queries";
+import RegistrationForm from "@/features/auth/components/register-form";
+import { getCurrentUser } from "@/features/auth/server/auth.queries";
 import { redirect } from "next/navigation";
 
 const Registration = async () => {

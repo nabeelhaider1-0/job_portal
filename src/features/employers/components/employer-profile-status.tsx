@@ -8,7 +8,7 @@ import {
   ItemMedia,
   ItemTitle,
 } from "@/components/ui/item";
-import { getCurrentEmployerDetails } from "@/feature/server/employers.queries";
+import { getCurrentEmployerDetails } from "@/features/server/employers.queries";
 
 import { ShieldAlertIcon } from "lucide-react";
 import Link from "next/link";

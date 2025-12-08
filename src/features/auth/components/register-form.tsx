@@ -27,8 +27,8 @@ import { Controller, useForm } from "react-hook-form";
 import {
   RegisterUserWithConfirmData,
   registerUserWithConfirmSchema,
-} from "@/feature/auth/auth.schema";
-import { registerUserAction } from "@/feature/auth/server/auth.actions";
+} from "@/features/auth/auth.schema";
+import { registerUserAction } from "@/features/auth/server/auth.actions";
 import { useRouter } from "next/navigation";
 
 const RegistrationForm = () => {

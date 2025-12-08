@@ -1,13 +1,12 @@
-import EmployerSettingsForm from "@/feature/employers/components/employer-setting-form";
-import { getCurrentEmployerDetails } from "@/feature/server/employers.queries";
+import EmployerSettingsForm from "@/features/employers/components/employer-setting-form";
+import { getCurrentEmployerDetails } from "@/features/server/employers.queries";
 import { redirect } from "next/navigation";
-
-import React from "react";
 
 const EmployerSettings = async () => {
   const employer = await getCurrentEmployerDetails();
-
   if (!employer) return redirect("/login");
+
+  console.log("currentEmployer: ", employer);
 
   return (
     <div>

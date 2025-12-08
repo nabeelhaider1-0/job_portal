@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/feature/auth/server/auth.queries";
+import { getCurrentUser } from "@/features/auth/server/auth.queries";
 import { redirect } from "next/navigation";
 import React from "react";
 

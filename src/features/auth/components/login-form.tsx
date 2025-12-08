@@ -13,9 +13,9 @@ import { Eye, EyeOff, Lock, Mail, UserCheck } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { loginUserAction } from "@/feature/auth/server/auth.actions";
+import { loginUserAction } from "@/features/auth/server/auth.actions";
 import { toast } from "sonner";
-import { LoginUserData, loginUserSchema } from "@/feature/auth/auth.schema";
+import { LoginUserData, loginUserSchema } from "@/features/auth/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 

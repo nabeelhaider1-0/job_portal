@@ -1,5 +1,5 @@
 "use client";
-import { logoutUserAction } from "@/feature/auth/server/auth.actions";
+import { logoutUserAction } from "@/features/auth/server/auth.actions";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,

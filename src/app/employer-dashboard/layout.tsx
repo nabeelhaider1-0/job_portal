@@ -1,5 +1,5 @@
-import { getCurrentUser } from "@/feature/auth/server/auth.queries";
-import EmployerSidebar from "@/feature/employers/components/employer-sidebar";
+import { getCurrentUser } from "@/features/auth/server/auth.queries";
+import EmployerSidebar from "@/features/employers/components/employer-sidebar";
 import { redirect } from "next/navigation";
 import React from "react";
 
