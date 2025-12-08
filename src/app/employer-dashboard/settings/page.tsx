@@ -12,12 +12,12 @@ const EmployerSettings = async () => {
     <div>
       <EmployerSettingsForm
         initialData={{
-          name: employer.employerDetails.name,
-          description: employer.employerDetails.description,
+          name: employer.employerDetails.name || undefined,
+          description: employer.employerDetails.description || undefined,
           organizationType: employer.employerDetails.organizationType,
           teamSize: employer.employerDetails.teamSize,
-          location: employer.employerDetails.location,
-          websiteUrl: employer.employerDetails.websiteUrl,
+          location: employer.employerDetails.location || undefined,
+          websiteUrl: employer.employerDetails.websiteUrl || undefined,
           yearOfEstablishment:
             employer.employerDetails.yearOfEstablishment?.toString(),
         }}

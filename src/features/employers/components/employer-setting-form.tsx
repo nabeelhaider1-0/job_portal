@@ -9,12 +9,11 @@ import {
   Briefcase,
   Building2,
   Calendar,
-  FileText,
   Globe,
   Loader,
   MapPin,
 } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
+
 import {
   Select,
   SelectContent,
