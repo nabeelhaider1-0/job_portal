@@ -84,7 +84,7 @@ const LoginForm: React.FC = () => {
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Create a strong password"
+                  placeholder="Your password"
                   required
                   {...register("password")}
                   className={`pl-10 ${
