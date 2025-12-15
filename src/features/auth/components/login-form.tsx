@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -15,14 +15,15 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { loginUserAction } from "@/features/auth/server/auth.actions";
 import { toast } from "sonner";
-import { LoginUserData, loginUserSchema } from "@/features/auth/auth.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginUserData, loginUserSchema } from "@/features/auth/auth.schema";
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(loginUserSchema),
@@ -36,9 +37,7 @@ const LoginForm = () => {
 
       if (result.status === "SUCCESS") toast.success(result.message);
       else toast.error(result.message);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -85,7 +84,7 @@ const LoginForm = () => {
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Your password"
+                  placeholder="Create a strong password"
                   required
                   {...register("password")}
                   className={`pl-10 ${
@@ -116,7 +115,7 @@ const LoginForm = () => {
 
             {/* Submit Button */}
             <Button type="submit" className="w-full">
-              Sign In
+              Create Account
             </Button>
 
             <div className="text-center">
@@ -126,7 +125,7 @@ const LoginForm = () => {
                   href="/register"
                   className="text-primary hover:text-primary/80 font-medium underline-offset-4 hover:underline"
                 >
-                  SignUp here
+                  Sign in here
                 </Link>
               </p>
             </div>

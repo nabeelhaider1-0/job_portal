@@ -9,6 +9,7 @@ const Registration = async () => {
     if (user.role === "applicant") return redirect("/dashboard");
     if (user.role === "employer") return redirect("/employer-dashboard");
   }
+
   return (
     <>
       <RegistrationForm />

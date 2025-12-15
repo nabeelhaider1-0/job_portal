@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Button } from "@/components/ui/button";
 import {
   Item,
@@ -9,7 +8,6 @@ import {
   ItemTitle,
 } from "@/components/ui/item";
 import { getCurrentEmployerDetails } from "@/features/server/employers.queries";
-
 import { ShieldAlertIcon } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";

@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 const EmployerDashboard = async () => {
   const user = await getCurrentUser();
+  console.log("user data employer: ", user);
 
   if (!user) return redirect("/login");
 
@@ -22,6 +23,7 @@ const EmployerDashboard = async () => {
 
       {/* Stats Cards */}
       <StatsCards />
+
       <EmployerProfileCompletionStatus />
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -21,15 +21,14 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { toast } from "sonner";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
 import {
   RegisterUserWithConfirmData,
   registerUserWithConfirmSchema,
 } from "@/features/auth/auth.schema";
-import { registerUserAction } from "@/features/auth/server/auth.actions";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { registerUserAction } from "../server/auth.actions";
 
 const RegistrationForm = () => {
   const {
@@ -42,11 +41,13 @@ const RegistrationForm = () => {
   });
 
   const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = async (data: RegisterUserWithConfirmData) => {
     const result = await registerUserAction(data);
+
     if (result.status === "SUCCESS") {
       if (data.role === "employer") router.push("/employer-dashboard");
       else router.push("/dashboard");

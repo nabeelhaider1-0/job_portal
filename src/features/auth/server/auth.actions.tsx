@@ -10,14 +10,13 @@ import {
   RegisterUserData,
   registerUserSchema,
 } from "../auth.schema";
-
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import crypto from "crypto";
 import {
   createSessionAndSetCookies,
   invalidateSession,
-} from "./uses-cases/sessions";
+} from "./use-cases/sessions";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import crypto from "crypto";
 
 // 👉 Server Actions in Next.js are special functions that run only on the server, not in the user’s browser.
 
@@ -76,7 +75,6 @@ export const registerUserAction = async (data: RegisterUserData) => {
       message: "Registration Completed Successfully",
     };
   } catch (error) {
-    console.log(error);
     return {
       status: "ERROR",
       message: "Unknown Error Occurred! Please Try Again Later",
@@ -115,8 +113,6 @@ export const loginUserAction = async (data: LoginUserData) => {
       message: "Login Successful",
     };
   } catch (error) {
-    console.log(error);
-
     return {
       status: "ERROR",
       message: "Unknown Error Occurred! Please Try Again Later",

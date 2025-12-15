@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "8edc89af-db84-4f6b-acdf-1d6cd880770f",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "cb8840c0-140d-4a15-ac5f-b17826afcf91",
+  "prevId": "4662762b-4dc5-403c-9a1b-ddb14866c4c1",
   "tables": {
     "applicants": {
       "name": "applicants",
@@ -23,7 +23,7 @@
         },
         "date_of_birth": {
           "name": "date_of_birth",
-          "type": "date",
+          "type": "datetime",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -147,6 +147,13 @@
         },
         "description": {
           "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "avatar_url": {
+          "name": "avatar_url",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -370,7 +377,7 @@
           "name": "role",
           "type": "enum('admin','applicant','employer')",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false,
           "default": "'applicant'"
         },

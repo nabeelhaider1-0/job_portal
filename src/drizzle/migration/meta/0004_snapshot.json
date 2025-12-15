@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "8edc89af-db84-4f6b-acdf-1d6cd880770f",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "513052b9-ae6c-4344-99ba-19de2e91a429",
+  "prevId": "cb8840c0-140d-4a15-ac5f-b17826afcf91",
   "tables": {
     "applicants": {
       "name": "applicants",
@@ -23,7 +23,7 @@
         },
         "date_of_birth": {
           "name": "date_of_birth",
-          "type": "date",
+          "type": "datetime",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -370,7 +370,7 @@
           "name": "role",
           "type": "enum('admin','applicant','employer')",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false,
           "default": "'applicant'"
         },
