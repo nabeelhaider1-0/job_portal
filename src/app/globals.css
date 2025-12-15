@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin "@tailwindcss/typography";
 
 /* we are using it for uploadThings */
 @import "uploadthing/tw/v4";

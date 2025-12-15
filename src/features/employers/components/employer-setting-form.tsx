@@ -9,7 +9,6 @@ import {
   Briefcase,
   Building2,
   Calendar,
-  FileText,
   Globe,
   Loader,
   Loader2,
@@ -17,7 +16,6 @@ import {
   Upload,
   X,
 } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -35,7 +33,7 @@ import {
 } from "../employers.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Tiptap from "@/components/text-editor";
-import { UploadButton, useUploadThing } from "@/lib/uploadthing";
+import { useUploadThing } from "@/lib/uploadthing";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ComponentProps, useState } from "react";
@@ -50,8 +48,6 @@ const EmployerSettingsForm = ({
     register,
     handleSubmit,
     control,
-    setValue,
-    watch, //Give me the current value of this field in the form state, and re-render this component when it changes.
     formState: { errors, isDirty, isSubmitting },
   } = useForm<EmployerProfileData>({
     defaultValues: {
