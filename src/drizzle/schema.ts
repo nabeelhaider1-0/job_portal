@@ -8,7 +8,6 @@ import {
   timestamp,
   varchar,
   year,
-  boolean,
 } from "drizzle-orm/mysql-core";
 
 export const users = mysqlTable("users", {

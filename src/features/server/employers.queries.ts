@@ -16,7 +16,6 @@ export const getCurrentEmployerDetails = async () => {
     .select()
     .from(employers)
     .where(eq(employers.id, currentUser.id));
-
   console.log("employer: ", employer);
 
   const isProfileCompleted =

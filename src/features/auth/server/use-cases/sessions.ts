@@ -5,7 +5,6 @@ import { sessions, users } from "@/drizzle/schema";
 import { db } from "@/config/db";
 import { SESSION_LIFETIME, SESSION_REFRESH_TIME } from "@/config/constant";
 import { eq } from "drizzle-orm";
-import { redirect } from "next/navigation";
 
 type CreateSessionData = {
   userAgent: string;
@@ -92,7 +91,6 @@ export const validateSessionAndGetUser = async (session: string) => {
       role: users.role,
       phoneNumber: users.phoneNumber,
       email: users.email,
-      // emailVerifiedAt: users.emailVerifiedAt,
       avatarUrl: users.avatarUrl,
       createdAt: users.createdAt,
       updatedAt: users.updatedAt,

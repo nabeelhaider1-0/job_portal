@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "4662762b-4dc5-403c-9a1b-ddb14866c4c1",
-  "prevId": "af7a6322-f38b-43b2-8f1c-341bf177d83d",
+  "id": "a1fe86df-022a-4fe6-86bb-af423f22ddbe",
+  "prevId": "513052b9-ae6c-4344-99ba-19de2e91a429",
   "tables": {
     "applicants": {
       "name": "applicants",
@@ -23,7 +23,7 @@
         },
         "date_of_birth": {
           "name": "date_of_birth",
-          "type": "datetime",
+          "type": "date",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -147,13 +147,6 @@
         },
         "description": {
           "name": "description",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "avatar_url": {
-          "name": "avatar_url",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -377,13 +370,20 @@
           "name": "role",
           "type": "enum('admin','applicant','employer')",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false,
           "default": "'applicant'"
         },
         "phone_number": {
           "name": "phone_number",
           "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "avatar_url": {
+          "name": "avatar_url",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -444,9 +444,7 @@
   "_meta": {
     "schemas": {},
     "tables": {},
-    "columns": {
-      "\"sessions\".\"expires_id\"": "\"sessions\".\"expires_at\""
-    }
+    "columns": {}
   },
   "internal": {
     "tables": {},
